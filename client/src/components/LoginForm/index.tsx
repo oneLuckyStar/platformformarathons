@@ -4,7 +4,7 @@ import { UserOutlined, LockOutlined } from '@ant-design/icons';
 import { Form } from './style';
 import { server } from '../../services/server';
 import logo from '../../images/logo-blue.svg';
-import { useHistory } from 'react-router-dom';
+import {Link, useHistory} from 'react-router-dom';
 
 interface LoginRes {
   accessToken: string;
@@ -15,7 +15,9 @@ const LoginForm = () => {
   const onFinish = async (values: any) => {
     const access: LoginRes | null = await server.postData(
       '/user/login',
-      values,
+      {
+        ...values
+      },
     );
     if (!access) {
       message.error('Ошибка сервера. Попробуйте позже');
@@ -65,12 +67,6 @@ const LoginForm = () => {
         <Input.Password prefix={<LockOutlined />} type="password" placeholder="Пароль" />
       </Form.Item>
 
-      <Form.Item style={{ marginBottom: '0' }}>
-        <a style={{ float: 'right' }} href="http://sd.ru">
-          Забыл пароль
-        </a>
-      </Form.Item>
-
       <Form.Item>
         <Button
           style={{ width: '100%', margin: '15px 0' }}
@@ -79,7 +75,7 @@ const LoginForm = () => {
         >
           Войти
         </Button>
-        <a href="http://sd.ru">Нет аккаунта? Зарегистрироваться</a>
+        <Link to="/registration">Нет аккаунта? Зарегистрироваться</Link>
       </Form.Item>
     </Form>
   );

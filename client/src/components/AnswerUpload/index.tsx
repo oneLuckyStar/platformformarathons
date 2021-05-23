@@ -1,7 +1,7 @@
 import {Upload, message, List, Button } from 'antd';
 import { InboxOutlined } from '@ant-design/icons';
 import React, { FC } from 'react';
-import { server } from '../../services/server';
+import {server, SERVER_ADDRESS} from '../../services/server';
 import {Link} from './style';
 import { Answer, File } from '../TaskPage';
 
@@ -24,7 +24,7 @@ const AnswerUpload: FC<
   const props = {
     name: 'file',
     multiple: false,
-    action: 'http://localhost:3000/api/answer/sendFile',
+    action: `${SERVER_ADDRESS}/answer/sendFile`,
     data: {
       marathonId,
       taskId,
@@ -60,7 +60,7 @@ const AnswerUpload: FC<
         dataSource={ fileList }
         renderItem={item => (
           <List.Item actions={[<Button type="link" onClick={() => onDeleteAnswer(item.path)}>Удалить</Button>]}>
-            <Link href={`http://localhost:3000/${item.path?.replace('public/', '/')}`}>
+            <Link href={`${SERVER_ADDRESS}/${item.path?.replace('public/', '/')}`}>
               {item.name}
             </Link>
           </List.Item>

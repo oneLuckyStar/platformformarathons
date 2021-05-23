@@ -1,5 +1,9 @@
 import querystring, { ParsedUrlQueryInput } from 'querystring';
-const SERVER_ADDRESS = 'http://localhost:3000/api';
+const address = {
+  local: 'http://localhost:3000/api',
+  server: 'https://platformformarathons.herokuapp.com/api'
+}
+export const SERVER_ADDRESS = address.local;
 
 class Server {
   async getData<T>(

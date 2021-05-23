@@ -32,7 +32,7 @@ const TaskItem: FC<Props> = ({ data, index, marathonId, id, setTasks }) => {
 
   useEffect(() => {
     (async () => {
-      if (user?._id == data.creatorId) {
+      if (user?._id === data.creatorId) {
         setIsLoadingAnswers(true);
         const countAnswers =
           (await server.getData<number>(`/answer/countForTask`, {
@@ -43,7 +43,7 @@ const TaskItem: FC<Props> = ({ data, index, marathonId, id, setTasks }) => {
         setIsLoadingAnswers(false);
       }
     })()
-  }, [])
+  }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
   const showDeleteConfirm = () => {
     confirm({
@@ -117,7 +117,7 @@ const TaskItem: FC<Props> = ({ data, index, marathonId, id, setTasks }) => {
           </> : null
       }
       {
-        user?._id == data.creatorId ?
+        user?._id === data.creatorId ?
           <AnswersBtn>
             <Link to={`/marathons/answers/${marathonId}/${id}`}>
               {`Ответы пользователей`}

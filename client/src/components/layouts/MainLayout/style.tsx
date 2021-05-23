@@ -14,4 +14,5 @@ export const Content = styled(AntdContent)`
   background-color: white;
   color: black;
   position: relative;
+  min-width: 400px;
 `;

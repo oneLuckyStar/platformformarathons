@@ -6,7 +6,7 @@ import {
 import {List, Typography, Collapse, Rate, Input, Button, message} from 'antd';
 import { Answer } from '../TaskPage';
 import moment from 'moment';
-import {server} from '../../services/server';
+import {server, SERVER_ADDRESS} from '../../services/server';
 
 export const desc = [
   {
@@ -78,7 +78,7 @@ const AnswerItem: FC<{answer: Answer, taskId: string, marathonId: string}> = ({ 
                 dataSource={ answer.files }
                 renderItem={item => (
                   <List.Item key={item.path}>
-                    <Typography.Link href={`http://localhost:3000/${item.path?.replace('public/', '/')}`}>
+                    <Typography.Link href={`${SERVER_ADDRESS}${item.path?.replace('public/', '/')}`}>
                       { item.name }
                     </Typography.Link>
                   </List.Item>
