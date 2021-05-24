@@ -51,6 +51,9 @@ export class Marathon {
 
   @Prop()
   stat?: MarathonStat;
+
+  @Prop()
+  desc?: string;
 }
 
 export const MarathonSchema = SchemaFactory.createForClass(Marathon);

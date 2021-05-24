@@ -19,13 +19,6 @@ import { CreateMarathonDto } from './dto/createMarathon.dto';
 export class MarathonController {
   constructor(private readonly marathonsService: MarathonService) {}
 
-  @hasRoles(UserRole.ADMIN)
-  @UseGuards(JwtAuthGuard, RolesGuard)
-  @Get()
-  getAll(): Promise<Marathon[]> {
-    return this.marathonsService.findAll();
-  }
-
   @UseGuards(JwtAuthGuard)
   @Get('/getNameById')
   getNameById(@Query() query: { marathonId: string }): Promise<Marathon> {
@@ -34,19 +27,25 @@ export class MarathonController {
 
   @UseGuards(JwtAuthGuard)
   @Get('/my')
-  getMyMarathons(@Request() req): Promise<Marathon[]> {
+  my(@Request() req): Promise<Marathon[]> {
     return this.marathonsService.findMyWithStat(req.user.email, req.user._id);
+  }
+
+  @UseGuards(JwtAuthGuard)
+  @Get('/all')
+  all(@Request() req): Promise<Marathon[]> {
+    return this.marathonsService.findAll();
   }
 
   @hasRoles(UserRole.TEACHER)
   @UseGuards(JwtAuthGuard, RolesGuard)
   @Post('/new')
-  async create(
+  async new(
     @Body() createMarathonDto: CreateMarathonDto,
     @Request() req,
   ): Promise<Marathon[]> {
     await this.marathonsService.create(createMarathonDto, req.user._id);
-    return this.marathonsService.findMy(req.user.email, req.user._id);
+    return this.marathonsService.findMyWithStat(req.user.email, req.user._id);
   }
 
   @hasRoles(UserRole.TEACHER)
@@ -57,6 +56,6 @@ export class MarathonController {
     @Request() req,
   ): Promise<Marathon[]> {
     await this.marathonsService.delete(query.marathonId);
-    return this.marathonsService.findMy(req.user.email, req.user._id);
+    return this.marathonsService.findMyWithStat(req.user.email, req.user._id);
   }
 }

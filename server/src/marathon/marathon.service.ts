@@ -18,7 +18,10 @@ export class MarathonService {
   ) {}
 
   findAll(): Promise<Marathon[]> {
-    return this.marathonModel.find().sort('modifiedTs').exec();
+    return this.marathonModel
+      .find({ isActive: true })
+      .sort('modifiedTs')
+      .exec();
   }
 
   async findMy(email: User['email'], id: User['_id']): Promise<Marathon[]> {

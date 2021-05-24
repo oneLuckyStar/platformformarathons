@@ -5,6 +5,7 @@ const { Content: AntdContent } = Layout;
 export const Main = styled(Layout)`
   background-color: whitesmoke;
   height: 100vh;
+  min-width: 450px;
 `;
 
 export const Content = styled(AntdContent)`
@@ -14,5 +15,4 @@ export const Content = styled(AntdContent)`
   background-color: white;
   color: black;
   position: relative;
-  min-width: 400px;
 `;

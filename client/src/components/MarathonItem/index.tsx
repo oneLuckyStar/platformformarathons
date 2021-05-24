@@ -52,6 +52,7 @@ const MarathonItem: FC<Props> = ({ data, setMarathons }) => {
           <Link to={`/marathons/${data.nameId}`}>{data.name}</Link>
         </ContentTitle>
         <Desc>
+          <Typography.Paragraph type="secondary">{data.desc}</Typography.Paragraph>
           <ProgressBlock>
             <Progress percent={((data.stat?.doneCount ?? 0) / (data.stat?.taskCount ?? 1)) * 100}/>
           </ProgressBlock>

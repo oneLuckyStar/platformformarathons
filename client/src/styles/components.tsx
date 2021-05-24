@@ -11,4 +11,5 @@ export const EmptyTitle = styled.p<{ fontSize: string; margin?: string }>`
   color: gray;
   margin: ${(props) => (props.margin ? props.margin : '0 auto')};
   display: block;
+  text-align: center;
 `;

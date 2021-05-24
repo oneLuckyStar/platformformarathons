@@ -87,6 +87,16 @@ const CreateMarathon: FC<{ setMarathons: any }> = ({ setMarathons }) => {
           >
             <Input placeholder="Название" />
           </Form.Item>
+          <Form.Item
+            name="desc"
+            rules={[
+              { required: true, message: 'Введите описание' },
+              { min: 10, message: 'Минимум 10 символов' },
+              { max: 150, message: 'Минимум 150 символов' }
+            ]}
+          >
+            <Input.TextArea placeholder="Описание" />
+          </Form.Item>
           <Form.Item name="img">
             <Input placeholder="Ссылка на изображение" />
           </Form.Item>

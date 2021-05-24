@@ -1,11 +1,12 @@
-import React, { FC, useEffect, useState } from 'react';
+import React, {FC, useContext, useEffect, useState} from 'react';
 import { List, Breadcrumb, Settings } from './style';
 import TaskItem from '../TaskItem';
 import { Link } from 'react-router-dom';
 import { server } from '../../services/server';
 import { EmptyTitle, Spin } from '../../styles/components';
 import CreateTask from '../CreateTask';
-import { Answer } from '../TaskPage';
+import { Answer } from '../pages/TaskPage';
+import {UserContext} from '../../UserContext';
 
 type Props = {
   marathonId: string;
@@ -27,6 +28,7 @@ export interface Task {
 
 const TaskList: FC<Props> = ({ marathonId }) => {
   const [tasks, setTasks] = useState<Task[] | null>(null);
+  const { user } = useContext(UserContext);
 
   useEffect(() => {
     (async () => {
@@ -46,9 +48,13 @@ const TaskList: FC<Props> = ({ marathonId }) => {
         </Breadcrumb.Item>
         <Breadcrumb.Item>{tasks && tasks[0]?.marathonName}</Breadcrumb.Item>
       </Breadcrumb>
-      <Settings>
-        <CreateTask setTasks={setTasks} marathonId={marathonId} />
-      </Settings>
+      {
+        (user?.role === 'teacher' && tasks && tasks[0]?.creatorId === user?._id) ? (
+          <Settings>
+            <CreateTask setTasks={setTasks} marathonId={marathonId} />
+          </Settings>
+        ): null
+      }
       <List>
         {tasks && tasks.length ? (
           tasks.map((task, index) => (

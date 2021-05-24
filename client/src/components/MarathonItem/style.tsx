@@ -11,6 +11,7 @@ export const ProgressBlock = styled.div`
 `;
 
 export const ContentTitle = styled(Typography.Title)`
+  margin-bottom: 0 !important;
 `;
 
 export const ImgHeader = styled.div<{ imgUrl: string }>`

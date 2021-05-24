@@ -1,8 +1,8 @@
 import React, { FC, useEffect, useState } from 'react';
 import { Main, Breadcrumb } from './style';
 import { Link } from 'react-router-dom';
-import { server } from '../../services/server';
-import AnswerItem from '../AnswerItem';
+import { server } from '../../../services/server';
+import AnswerItem from '../../AnswerItem';
 import {Answer} from '../TaskPage';
 
 type Props = {

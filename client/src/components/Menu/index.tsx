@@ -1,6 +1,6 @@
 import React from 'react';
 import { Layout, Menu as AntdMenu } from 'antd';
-import { AppstoreOutlined } from '@ant-design/icons';
+import { AppstoreOutlined, BorderOuterOutlined, CalendarOutlined } from '@ant-design/icons';
 import logo from './../../images/logo.svg';
 import { useLocation } from 'react-router-dom';
 import { Link } from 'react-router-dom';
@@ -29,7 +29,15 @@ const Menu = () => {
         <ProfileModal />
 
         <AntdMenu.Item key="marathons" icon={<AppstoreOutlined />}>
-          <Link to="/marathons">Марафоны</Link>
+          <Link to="/marathons">Мои марафоны</Link>
+        </AntdMenu.Item>
+
+        <AntdMenu.Item key="all_marathons" icon={<BorderOuterOutlined />}>
+          <Link to="/all_marathons">Все марафоны</Link>
+        </AntdMenu.Item>
+
+        <AntdMenu.Item key="calendar" icon={<CalendarOutlined />}>
+          <Link to="/calendar">Календарь</Link>
         </AntdMenu.Item>
 
       </AntdMenu>

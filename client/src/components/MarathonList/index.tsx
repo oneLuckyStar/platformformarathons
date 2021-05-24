@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, {FC, useContext, useEffect, useState} from 'react';
 import { List, Settings } from './style';
 import MarathonItem from '../MarathonItem';
 import { server } from '../../services/server';
@@ -22,22 +22,22 @@ export interface Marathon {
   img?: string;
   modifiedTs?: string;
   creatorInfo?: User;
-  _id?: string;
+  desc?: string;
   stat?: MarathonStat;
 }
 
-const MarathonList = () => {
+const MarathonList: FC<{ type: 'all' | 'my' }> = ({ type }) => {
   const [marathons, setMarathons] = useState<Marathon[] | null>(null);
   const { user } = useContext(UserContext);
   useEffect(() => {
     (async () => {
-      const data = (await server.getData<Marathon[]>('/marathon/my')) ?? [];
+      const data = (await server.getData<Marathon[]>(`/marathon/${type}`)) ?? [];
       setMarathons(data);
     })();
-  }, []);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
   return (
     <List>
-      {user?.role === 'teacher' ? (
+      {user?.role === 'teacher' && type === 'my' ? (
         <Settings>
           <CreateMarathon setMarathons={setMarathons} />
         </Settings>
@@ -47,12 +47,12 @@ const MarathonList = () => {
           <MarathonItem
             data={marathon}
             setMarathons={setMarathons}
-            key={marathon._id}
+            key={marathon.nameId}
           />
         ))
       ) : marathons?.length === 0 ? (
         <EmptyTitle fontSize={'1.2em'} margin={'40px auto'}>
-          У вас нет доступных марафонов
+          Список марафонов пуст :(
         </EmptyTitle>
       ) : (
         <Spin margin={'40px auto'} />

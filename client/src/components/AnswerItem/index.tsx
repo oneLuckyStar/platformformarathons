@@ -4,7 +4,7 @@ import {
   UserOutlined,
 } from '@ant-design/icons';
 import {List, Typography, Collapse, Rate, Input, Button, message} from 'antd';
-import { Answer } from '../TaskPage';
+import { Answer } from '../pages/TaskPage';
 import moment from 'moment';
 import {server, SERVER_ADDRESS} from '../../services/server';
 

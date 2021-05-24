@@ -3,7 +3,7 @@ import { InboxOutlined } from '@ant-design/icons';
 import React, { FC } from 'react';
 import {server, SERVER_ADDRESS} from '../../services/server';
 import {Link} from './style';
-import { Answer, File } from '../TaskPage';
+import { Answer, File } from '../pages/TaskPage';
 
 const { Dragger } = Upload;
 

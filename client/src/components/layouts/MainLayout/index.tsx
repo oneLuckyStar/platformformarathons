@@ -5,10 +5,10 @@ import Menu from '../../Menu';
 import { Route } from 'react-router-dom';
 import MarathonList from '../../MarathonList';
 import TaskList from '../../TaskList';
-import TaskPage from '../../TaskPage';
+import TaskPage from '../../pages/TaskPage';
 import Profile from '../../Profile';
 import EventsCalendar from '../../EventsCalendar';
-import AnswersPage from '../../AnswersPage';
+import AnswersPage from '../../pages/AnswersPage';
 
 const MainLayout: FC = () => {
   return (
@@ -17,7 +17,10 @@ const MainLayout: FC = () => {
       <Main>
         <Content>
           <Route path="/marathons" exact>
-            <MarathonList />
+            <MarathonList type="my"/>
+          </Route>
+          <Route path="/all_marathons" exact>
+            <MarathonList type="all"/>
           </Route>
           <Route
             path="/marathons/:idMarathon"

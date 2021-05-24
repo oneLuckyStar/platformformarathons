@@ -1,11 +1,11 @@
 import React, { FC, useEffect, useState } from 'react';
 import { Main, Markdown, Spin, Breadcrumb, AnswerBlock, TextArea, SaveButton } from './style';
 import { Link } from 'react-router-dom';
-import { server } from '../../services/server';
-import { Task } from '../TaskList';
-import AnswerUpload from '../AnswerUpload';
+import { server } from '../../../services/server';
+import { Task } from '../../TaskList';
+import AnswerUpload from '../../AnswerUpload';
 import {message, Typography} from 'antd';
-import {User} from '../Profile';
+import {User} from '../../Profile';
 const gfm = require('remark-gfm');
 
 type Props = {
